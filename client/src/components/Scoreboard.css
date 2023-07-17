@@ -1,0 +1,46 @@
+.scoreboard {
+  display: grid;
+  grid-template-columns: repeat(3, 10rem);
+  width: 30rem;
+  background-color: white;
+  margin: 3rem auto;
+  box-shadow: 0px 0px 8px #888;
+  border-radius: 0.5rem;
+  font-weight: bold;
+}
+
+.scoreboard > * {
+  text-align: center;
+}
+
+.score {
+  width: 100%;
+  padding: 1rem 0;
+  display: block;
+  font-size: 1.5rem;
+}
+
+.x-score {
+  color: rgb(255, 94, 66);
+  border-bottom: 5px solid rgb(255, 94, 66);
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.draw {
+  color: rgb(100, 100, 100);
+  /* border-bottom: 5px solid rgb(100, 100, 100); */
+}
+
+.o-score {
+  color: rgb(77, 154, 255);
+  border-bottom: 5px solid rgb(77, 154, 255);
+  border-radius: 0 0.5rem 0.5rem 0;
+} 
+
+.inactive {
+  border-bottom: 5px solid transparent;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
