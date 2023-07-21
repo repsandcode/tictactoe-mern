@@ -3,5 +3,10 @@ import GameHistory from "./components/GameHistory";
 import { NewGameButton } from "./components/NewGameButton";
 
 const HomePage = () => {
-  return <div></div>;
+  return (
+    <div>
+      <GameHistory />
+      <NewGameButton />
+    </div>
+  );
 };

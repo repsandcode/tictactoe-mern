@@ -1,7 +1,7 @@
-.play-again {
+.stop-button {
   border: none;
   border-radius: 0.5rem;
-  background-color: rgb(100, 100, 100);
+  background-color: rgb(203, 79, 79);
   color: white;
   font-size: 1.5rem;
   font-family: inherit;
