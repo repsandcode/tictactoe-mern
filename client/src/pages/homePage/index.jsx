@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+
+// import React, { useState } from "react";
 import GameHistory from "./components/GameHistory";
 import { NewGameButton } from "./components/NewGameButton";
 
@@ -10,3 +12,5 @@ const HomePage = () => {
     </div>
   );
 };
+
+export default HomePage;
