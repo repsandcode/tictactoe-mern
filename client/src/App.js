@@ -3,17 +3,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import GamePage from "./pages/gamePage/index";
+import HomePage from "./pages/homePage";
 
 function App() {
   return (
     <div className="App">
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />}
-          <Route path="/" element={<HomePage />} */}
-      <GamePage />
-      {/* </Routes>
-      </BrowserRouter> */}
+          <Route path="/" element={<HomePage />} />
+          {/* <Route path="/" element={<HomePage />} /> */}
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
