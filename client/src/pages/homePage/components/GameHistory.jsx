@@ -1,11 +1,29 @@
 import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-const GameHistory = ({ games }) => {
+const GameHistory = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from the server when the component mounts
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/");
+      setData(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   return (
     <div>
       <h2>Game History</h2>
       <ul>
-        {games.map((game, index) => (
+        {data.map((game, index) => (
           <li key={index}>
             <strong>Game {index + 1} scores</strong>
             <ul>
