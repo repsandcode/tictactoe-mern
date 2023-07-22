@@ -19,7 +19,7 @@ app.use(express.json());
 
 // Setup Routes where the Server is listening
 app.use("/", mainRoutes);
-app.use("/game", gameRoutes);
+app.use("/newGame", gameRoutes);
 
 // Listen to Database
 app.listen(port, () => console.log(`Server running on port ${port}`));

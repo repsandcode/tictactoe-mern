@@ -1,13 +1,17 @@
-const Game = require('../models/Game');
+const Game = require("../models/Game");
 
 module.exports = {
-  saveGame: async (req,res) => {
+  saveGame: async (req, res) => {
+    /*===== get All game data =====*/
+    // const {} = req.body;
     try {
-      await Game.create({
-        
-      })
-    } catch(err) {
-      console.log(err);
+      const gameData = await Game.create({
+        // game data from the form
+      });
+
+      res.json({ message: "Game Saved!", gameData });
+    } catch (err) {
+      console.error(err);
     }
   },
-}
+};
