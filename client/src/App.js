@@ -2,7 +2,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./App.css";
-import GamePage from "./pages/gamePage/index";
+import GamePage from "./pages/gamePage";
 import HomePage from "./pages/homePage";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          {/* <Route path="/" element={<HomePage />} /> */}
+          <Route path="/newGame" element={<GamePage />} />
         </Routes>
       </BrowserRouter>
     </div>
