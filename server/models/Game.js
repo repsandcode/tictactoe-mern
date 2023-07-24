@@ -2,10 +2,6 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const GameSchema = new Schema({
-  board: {
-    type: [[String]],
-    required: true,
-  },
   roundsPlayed: {
     type: Number,
     default: 1,
