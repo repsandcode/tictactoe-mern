@@ -100,7 +100,7 @@ function GamePage() {
 
   const newRound = () => {
     setPlayAgain(false);
-    setRoundsPlayed(+1);
+    setRoundsPlayed(roundsPlayed + 1);
     setBoard(Array(9).fill(null));
   };
 
@@ -130,7 +130,7 @@ function GamePage() {
 
   return (
     <div className="gamePage">
-      <form action="/gameData" method="post" onSubmit={handleGameSubmit}>
+      <form onSubmit={handleGameSubmit}>
         <div>
           <label>Player 1 (X):</label>
           <input
