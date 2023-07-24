@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const GameSchema = new Schema({
@@ -19,21 +19,11 @@ const GameSchema = new Schema({
     required: true,
     default: 0,
   },
-  playerOneLosses: {
-    type: Number,
-    required: true,
-    default: 0,
-  },
   playerTwo: {
     type: String,
     required: true,
   },
   playerTwoWins: {
-    type: Number,
-    required: true,
-    default: 0,
-  },
-  playerTwoLosses: {
     type: Number,
     required: true,
     default: 0,
@@ -51,9 +41,9 @@ const GameSchema = new Schema({
     type: Date,
     required: true,
     default: Date.now,
-  }
+  },
 });
 
-const GameModel = mongoose.model('Game', GameSchema);
+const GameModel = mongoose.model("Game", GameSchema);
 
 module.exports = GameModel;
