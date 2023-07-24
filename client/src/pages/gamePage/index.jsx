@@ -105,10 +105,11 @@ function GamePage() {
   };
 
   const handleGameSubmit = async (event) => {
-    const { xScore, oScore, draw } = scores;
     event.preventDefault();
     // Save the game data to the server
     try {
+      const { xScore, oScore, draw } = scores;
+
       await axios.post("http://localhost:3003/newGame/gameData", {
         board: board,
         roundsPlayed: roundsPlayed,
@@ -150,16 +151,16 @@ function GamePage() {
           />
         </div>
 
-        <Scoreboard
-          scores={scores}
-          xPlaying={xPlaying}
-          playAgain={playAgain}
-        ></Scoreboard>
-        <Board board={board} onClick={handleBoxClick}></Board>
-
         <StopButton></StopButton>
         <PlayAgainButton newRound={newRound}></PlayAgainButton>
       </form>
+
+      <Scoreboard
+        scores={scores}
+        xPlaying={xPlaying}
+        playAgain={playAgain}
+      ></Scoreboard>
+      <Board board={board} onClick={handleBoxClick}></Board>
     </div>
   );
 }

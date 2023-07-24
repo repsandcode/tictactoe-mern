@@ -12,6 +12,7 @@ const GameHistory = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get("http://localhost:3003/");
+      // console.log(response.data);
       setData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -23,21 +24,21 @@ const GameHistory = () => {
       <h2>Game History</h2>
       <ul>
         {data.map((game, index) => (
-          <li key={index}>
-            <strong>Game {index + 1} scores</strong>
+          <li key={game._id}>
+            <strong>Game {index + 1}</strong>
             <ul>
               <li>{game.roundsPlayed} rounds played</li>
               <li>
                 {game.playerOne} (X): {game.playerOneWins}
-                {game.playerOneWins === 0 ? "win" : "wins"}
+                {game.playerOneWins === 0 ? " win" : " wins"}
               </li>
               <li>
                 {game.playerTwo} (O): {game.playerTwoWins}
-                {game.playerTwoWins === 0 ? "win" : "wins"}
+                {game.playerTwoWins === 0 ? " win" : " wins"}
               </li>
               <li>Draws: {game.draws}</li>
-              <li>Date started: {game.dateStarted}</li>
-              <li>Date ended: {game.dateEnded}</li>
+              {/* <li>Date started: {game.dateStarted}</li>
+              <li>Date ended: {game.dateEnded}</li> */}
             </ul>
           </li>
         ))}
