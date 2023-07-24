@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 const port = process.env.PORT || 3003;
+const cors = require("cors");
 const connectDB = require("./config/db");
 // Routes variable
 const mainRoutes = require("./routes/mainRoutes");
@@ -12,6 +13,8 @@ dotenv.config({ path: "./config/.env" });
 
 // connect to Database
 connectDB();
+
+app.use(cors());
 
 // Body Parsing
 app.use(express.urlencoded({ extended: true }));
