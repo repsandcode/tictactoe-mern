@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 export const StopButton = () => {
   return (
     <Link to={"/"}>
-      <button className="stop-button">Stop</button>;
+      <button className="stop-button" type="submit">
+        Stop
+      </button>
+      ;
     </Link>
   );
 };
