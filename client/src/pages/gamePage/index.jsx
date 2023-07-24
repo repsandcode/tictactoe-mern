@@ -64,7 +64,9 @@ function GamePage() {
         let { xScore } = scores;
         xScore += 1;
         setScores({ ...scores, xScore });
-      } else {
+      }
+
+      if (winner === "O") {
         let { oScore } = scores;
         oScore += 1;
         setScores({ ...scores, oScore });
@@ -105,22 +107,21 @@ function GamePage() {
   };
 
   const handleGameSubmit = async (event) => {
+    console.log(scores);
+
     event.preventDefault();
     // Save the game data to the server
     try {
-      const { xScore, oScore, draw } = scores;
-
-      await axios.post("http://localhost:3003/newGame/gameData", {
-        board: board,
+      const gameData = {
         roundsPlayed: roundsPlayed,
         playerOne: playerOneName,
-        playerOneWins: xScore,
+        playerOneWins: scores.xScore,
         playerTwo: playerTwoName,
-        playerTwoWins: oScore,
-        draws: draw,
-        // add date | time started
-        // add time | time ended
-      });
+        playerTwoWins: scores.oScore,
+        draws: scores.draw,
+      };
+
+      await axios.post("http://localhost:3003/newGame/gameData", gameData);
 
       setPlayAgain(false);
       setBoard(Array(9).fill(null));

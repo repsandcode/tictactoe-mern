@@ -29,14 +29,14 @@ const GameHistory = () => {
             <ul>
               <li>{game.roundsPlayed} rounds played</li>
               <li>
-                {game.playerOne} (X): {game.playerOneWins}
-                {game.playerOneWins === 0 ? " win" : " wins"}
+                {game.playerOne} (X) - {game.playerOneWins}
+                {/* {game.playerOneWins === 0 ? " win" : " wins"} */}
               </li>
               <li>
-                {game.playerTwo} (O): {game.playerTwoWins}
-                {game.playerTwoWins === 0 ? " win" : " wins"}
+                {game.playerTwo} (O) - {game.playerTwoWins}
+                {/* {game.playerTwoWins === 0 ? " win" : " wins"} */}
               </li>
-              <li>Draws: {game.draws}</li>
+              <li>Draws - {game.draws}</li>
               {/* <li>Date started: {game.dateStarted}</li>
               <li>Date ended: {game.dateEnded}</li> */}
             </ul>
