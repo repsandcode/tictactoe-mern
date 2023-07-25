@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { Board } from "./components/Board";
 import { Scoreboard } from "./components/Scoreboard";
 import { PlayAgainButton } from "./components/PlayAgainButton";
-import { StopButton } from "./components/StopButton";
+// import { StopButton } from "./components/StopButton";
+import Form from "./Form";
 
 function GamePage() {
   const winningMoves = [
@@ -19,8 +20,6 @@ function GamePage() {
     [2, 4, 6],
   ];
 
-  const [playerOneName, setPlayerOneName] = useState("");
-  const [playerTwoName, setPlayerTwoName] = useState("");
   // setting an array for the 'X' and 'O' values
   const [board, setBoard] = useState(Array(9).fill(null));
   // setting the 'X' value - to be updated later for 'O'
@@ -31,14 +30,6 @@ function GamePage() {
   const [playAgain, setPlayAgain] = useState(false);
   // rounds played
   const [roundsPlayed, setRoundsPlayed] = useState(1);
-
-  // player names
-  const handlePlayerOneChange = (event) => {
-    setPlayerOneName(event.target.value);
-  };
-  const handlePlayerTwoChange = (event) => {
-    setPlayerTwoName(event.target.value);
-  };
 
   const handleBoxClick = (boxIndex) => {
     // If the round has ended, do nothing
@@ -57,16 +48,29 @@ function GamePage() {
     // put a value into a box [array]
     setBoard(updatedBoard);
 
-    // apply points to the winner! or if none, then a draw
+    // check if there's a winner
     const winner = checkWinner(updatedBoard);
+    addScore(winner);
+
+    console.log(scores);
+    // change values - from 'X' to 'O'
+    setXPlaying(!xPlaying);
+  };
+
+  const newRound = () => {
+    setPlayAgain(false);
+    setRoundsPlayed(roundsPlayed + 1);
+    setBoard(Array(9).fill(null));
+  };
+
+  const addScore = (winner) => {
+    // apply points to the winner! or if none, then a draw
     if (winner) {
       if (winner === "X") {
         let { xScore } = scores;
         xScore += 1;
         setScores({ ...scores, xScore });
-      }
-
-      if (winner === "O") {
+      } else if (winner === "O") {
         let { oScore } = scores;
         oScore += 1;
         setScores({ ...scores, oScore });
@@ -77,9 +81,6 @@ function GamePage() {
       draw += 1;
       setScores({ ...scores, draw });
     }
-
-    // change values - from 'X' to 'O'
-    setXPlaying(!xPlaying);
   };
 
   const checkWinner = (board) => {
@@ -100,62 +101,15 @@ function GamePage() {
     }
   };
 
-  const newRound = () => {
-    setPlayAgain(false);
-    setRoundsPlayed(roundsPlayed + 1);
-    setBoard(Array(9).fill(null));
-  };
-
-  const handleGameSubmit = async (event) => {
-    console.log(scores);
-
-    event.preventDefault();
-    // Save the game data to the server
-    try {
-      const gameData = {
-        roundsPlayed: roundsPlayed,
-        playerOne: playerOneName,
-        playerOneWins: scores.xScore,
-        playerTwo: playerTwoName,
-        playerTwoWins: scores.oScore,
-        draws: scores.draw,
-      };
-
-      await axios.post("http://localhost:3003/newGame/gameData", gameData);
-
-      setPlayAgain(false);
-      setBoard(Array(9).fill(null));
-    } catch (error) {
-      console.error("Error saving game data:", error);
-    }
-  };
-
   return (
     <div className="gamePage">
-      <form onSubmit={handleGameSubmit}>
-        <div>
-          <label>Player 1 (X):</label>
-          <input
-            type="text"
-            name="playerOneName"
-            value={playerOneName}
-            onChange={handlePlayerOneChange}
-          />
-        </div>
-        <div>
-          <label>Player 2 (O):</label>
-          <input
-            type="text"
-            name="playerTwoName"
-            value={playerTwoName}
-            onChange={handlePlayerTwoChange}
-          />
-        </div>
-
-        <StopButton></StopButton>
-        <PlayAgainButton newRound={newRound}></PlayAgainButton>
-      </form>
-
+      <Form
+        scores={scores}
+        board={board}
+        playAgain={playAgain}
+        roundsPlayed={roundsPlayed}
+      ></Form>
+      <PlayAgainButton newRound={newRound}></PlayAgainButton>
       <Scoreboard
         scores={scores}
         xPlaying={xPlaying}
