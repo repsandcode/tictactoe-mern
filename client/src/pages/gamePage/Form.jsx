@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./components/StopButton.css";
-// import { PlayAgainButton } from "./components/PlayAgainButton";
-// import { StopButton } from "./components/StopButton";
-
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { StopButton } from "./components/StopButton";
+// import { PlayAgainButton } from "./components/PlayAgainButton";
 
 const Form = ({ scores, roundsPlayed }) => {
   const navigate = useNavigate();
@@ -66,11 +64,8 @@ const Form = ({ scores, roundsPlayed }) => {
           onChange={handlePlayerTwoChange}
         />
       </div>
-      {/* <Link to={"/"}> */}
-      <button className="stop-button" type="submit">
-        Stop
-      </button>
-      ;{/* </Link> */}
+
+      <StopButton />
     </form>
   );
 };
